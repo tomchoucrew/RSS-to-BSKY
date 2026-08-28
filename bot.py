@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 from PIL import Image
 
 BSKY_BASE = "https://bsky.social"
+BSKY_PUBLIC_BASE = "https://public.api.bsky.app"
 RSS_URL = os.environ["RSS_URL"]
 BSKY_HANDLE = os.environ["BSKY_HANDLE"]
 BSKY_APP_PASSWORD = os.environ["BSKY_APP_PASSWORD"]
@@ -35,7 +36,7 @@ def api_post(endpoint, token=None, json_data=None, data=None, content_type=None)
 
 
 def api_get(endpoint, params=None):
-    r = session.get(f"{BSKY_BASE}/xrpc/{endpoint}", params=params, timeout=30)
+    r = session.get(f"{BSKY_PUBLIC_BASE}/xrpc/{endpoint}", params=params, timeout=30)
     r.raise_for_status()
     return r.json()
 
